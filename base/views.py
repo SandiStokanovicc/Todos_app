@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Task
+
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+
 from django.urls import reverse_lazy
 
 
@@ -43,6 +46,13 @@ class TaskList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["tasks"] = context["tasks"].filter(user=self.request.user)
         context["count"] = context["tasks"].filter(complete=False).count()
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context["tasks"] = context["tasks"].filter(taskName__icontains=search_input)
+
+        context["search_input"] = search_input    
+
         return context
     
 
