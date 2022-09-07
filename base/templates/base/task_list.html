@@ -5,19 +5,25 @@
 
 <div class="header-bar">
     <div>
-    <h1>Hello, {{request.user|title}}</h1>
-    <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:'s' }}.</h3>
+        <h1>Hello, {{request.user|title}}</h1>
+        <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:'s' }}.</h3>
     </div>
 
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}">Log out</a>
-    {% else %}
-    <a href="{% url 'login' %}">Log in</a>
-    {% endif %}
-    
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}">Log out</a>
+        {% else %}
+        <a href="{% url 'login' %}">Log in</a>
+        {% endif %}
+
+    </div>
+
+<div id="search-add-wrapper">
+    <form method="GET" style="margin-top: 20px; display:flex;">
+        <input type="text" name="search-area" value="{{ search_input}}">
+        <input type="submit" class="button" value="Search">
+    </form>
+    <a id="add-link" href="{% url 'create-task'%}"><i class='bx bx-plus add-link'></i></a>
 </div>
-
-
     
 
 
@@ -45,6 +51,6 @@
         {% empty %}
             <h3>No items</h3>
         {% endfor %}
-    </div>
+</div>
 
 {% endblock content %}

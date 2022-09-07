@@ -41,7 +41,7 @@ a, p {
     overflow: hidden;
 }
 
-.task-title {
+ .task-title {
     display: flex;
     padding: 20px;
 }
@@ -49,7 +49,8 @@ a, p {
 .task-title a {
     text-decoration: none;
     color: #4b5156;
-    margin-left: 10px;
+    margin-left: 30px;
+    white-space: nowrap
 }
 
 .task-complete-icon {
@@ -73,4 +74,47 @@ a, p {
     font-size: 22px;
     line-height: 0;
     padding: 20px 0px;
+} 
+
+#search-add-wrapper {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#add-link {
+    color: rgb(44,37,157);
+    text-decoration: none;
+    font-size: 42px;
+    /* text-shadow: 1px 1px #000; */
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    border: 1px solid rgb(44,37,157);
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+}
+
+label{
+    padding-top: 10px !important;
+    display: block;
+}
+
+.button {
+    border: 1px solid rgb(44,37,157);
+    background-color: #FAFAFA;
+    color: rgb(44,37,157);
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card-body{
+    padding: 20px;
 }
