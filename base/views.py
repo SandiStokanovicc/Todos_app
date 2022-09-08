@@ -75,11 +75,28 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ["taskName", "description", "complete"]
     success_url = reverse_lazy('tasks')
+    
+    def get(self, request, *args, **kwargs):
+        self.object = task =self.get_object()
+        task.save()
+        if task.user != request.user:
+            return redirect('tasks')
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)                
+    
+    
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = "task"
     success_url = reverse_lazy('tasks')
 
-
+    def get(self, request, *args, **kwargs):
+        self.object = task =self.get_object()
+        task.save()
+        if task.user != request.user:
+            return redirect('tasks')
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)                
+    
     
